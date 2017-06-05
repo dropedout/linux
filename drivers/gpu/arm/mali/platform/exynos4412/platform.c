@@ -170,7 +170,7 @@ static int exynos4412_opp_update(struct exynos4412_drvdata *data,
 		volt_first = false;
 
 	if (leftbus_turbo && !test_bit(exynos4412_leftbus_turbo, &data->flags)) {
-		ret = devfreq_turbo_get(data->leftbus_devfreq);
+		//ret = devfreq_turbo_get(data->leftbus_devfreq);
 
 		if (ret < 0)
 			goto out;
@@ -198,7 +198,7 @@ static int exynos4412_opp_update(struct exynos4412_drvdata *data,
 	}
 
 	if (!leftbus_turbo && test_bit(exynos4412_leftbus_turbo, &data->flags)) {
-		ret = devfreq_turbo_put(data->leftbus_devfreq);
+		//ret = devfreq_turbo_put(data->leftbus_devfreq);
 
 		if (ret < 0)
 			goto out;

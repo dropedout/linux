@@ -1,9 +1,9 @@
 /*
  * Copyright (C) 2013-2014 ARM Limited. All rights reserved.
- * 
+ *
  * This program is free software and is provided to you under the terms of the GNU General Public License version 2
  * as published by the Free Software Foundation, and any use by you of this program is subject to the terms of such GNU licence.
- * 
+ *
  * A copy of the licence is included with the program, and can also be obtained from Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
@@ -104,12 +104,14 @@ static void mali_mem_vma_close(struct vm_area_struct *vma)
 	mali_mem_descriptor_destroy(descriptor);
 }
 
-static int mali_kernel_memory_cpu_page_fault_handler(struct vm_area_struct *vma, struct vm_fault *vmf)
+static int mali_kernel_memory_cpu_page_fault_handler( struct vm_fault *vmf)
 {
+	struct vm_area_struct *vma;
 	void __user *address;
 	mali_mem_allocation *descriptor;
 
-	address = vmf->virtual_address;
+	vma = vmf->vma;
+	address = vmf->address;
 	descriptor = (mali_mem_allocation *)vma->vm_private_data;
 
 	MALI_DEBUG_ASSERT(MALI_MEM_ALLOCATION_VALID_MAGIC == descriptor->magic);
